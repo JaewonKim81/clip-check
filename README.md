@@ -1,3 +1,5 @@
+![ClipCheck 인트로](docs/ClipCheck-intro.gif)
+
 # ClipCheck — 영상 아카이브 & 금칙 검수 시스템
 
 영상을 올리면 자동으로 분석·저장하고, 자연어로 검색하며, 방영 전 금칙 검수까지 처리하는 웹 서비스.
