@@ -31,6 +31,17 @@ npm run electron:build  # Windows 설치 파일 생성 → release/ClipCheck Set
 - ffmpeg 와 Python whisper 는 데스크톱 앱에서도 시스템에 설치돼 있어야 합니다.
 - 주의: Electron 패키징 후 better-sqlite3 가 Electron ABI 로 재빌드되므로, `npm run server` (Node 단독 실행)를 다시 쓰려면 `npm run rebuild:node` 를 먼저 실행하세요. 반대로 Electron 실행 전에는 `npx electron-builder install-app-deps`.
 
+## 인트로 영상 (Remotion)
+
+`intro/` 는 [Remotion](https://www.remotion.dev) 기반 브랜드 인트로 영상 프로젝트입니다 (1080p · 30fps · 약 14초).
+
+```bash
+cd intro
+npm install
+npm run studio   # 브라우저 미리보기·편집
+npm run render   # → intro/out/ClipCheck-intro.mp4
+```
+
 ## 구조
 
 ```
