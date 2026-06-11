@@ -3,24 +3,60 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "server": "node server/index.js",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "rebuild:node": "npm rebuild better-sqlite3",
+    "electron": "electron .",
+    "electron:build": "vite build && electron-builder --win"
   },
   "dependencies": {
     "better-sqlite3": "^12.10.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "multer": "^2.1.1",
-    "openai": "^4.80.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "openai": "^4.80.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^41.7.2",
+    "electron-builder": "^26.15.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "vite": "^6.0.0"
+  },
+  "build": {
+    "appId": "com.clipcheck.app",
+    "productName": "ClipCheck",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "server/**",
+      "electron/**",
+      "scripts/whisper_stt.py",
+      "rules/**",
+      ".env.example",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "scripts/**",
+      "node_modules/better-sqlite3/**"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
   }
 }

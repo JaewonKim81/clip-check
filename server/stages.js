@@ -13,8 +13,9 @@ import { ROOT } from "./db.js";
 const CATEGORIES = ["성표현", "폭력", "충격혐오", "유해행위", "인격권", "차별증오", "아동청소년", "광고저작권"];
 
 function loadRules() {
+  const rulesDir = process.env.CLIPCHECK_RULES_DIR || path.join(ROOT, "rules");
   try {
-    return fs.readFileSync(path.join(ROOT, "rules", "금칙기준.md"), "utf8");
+    return fs.readFileSync(path.join(rulesDir, "금칙기준.md"), "utf8");
   } catch {
     return "(rules/금칙기준.md 파일을 찾을 수 없음 — 방송심의 규정 일반 원칙으로 판정)";
   }

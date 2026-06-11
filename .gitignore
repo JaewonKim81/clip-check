@@ -3,3 +3,4 @@ dist/
 .env
 .design/
 data/
+release/

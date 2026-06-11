@@ -9,7 +9,8 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const ROOT = path.resolve(__dirname, "..");
-export const DATA_DIR = path.join(ROOT, "data");
+// Electron 패키징 시 userData 경로로 오버라이드 (asar 내부는 쓰기 불가)
+export const DATA_DIR = process.env.CLIPCHECK_DATA_DIR || path.join(ROOT, "data");
 export const UPLOAD_DIR = path.join(DATA_DIR, "uploads");
 export const FRAMES_DIR = path.join(DATA_DIR, "frames");
 

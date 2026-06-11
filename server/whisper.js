@@ -12,7 +12,8 @@ const LANGUAGE = process.env.WHISPER_LANGUAGE || "ko";
 
 /** 오디오 파일 → [{t, text}] */
 export function localTranscribe(audioPath) {
-  const script = path.join(ROOT, "scripts", "whisper_stt.py");
+  // Electron asar 패키징 시 python 은 asar 내부 파일을 읽지 못함 → unpacked 경로 사용
+  const script = path.join(ROOT, "scripts", "whisper_stt.py").replace("app.asar", "app.asar.unpacked");
   return new Promise((resolve, reject) => {
     const p = spawn(PYTHON, [script, audioPath, "--model", MODEL, "--language", LANGUAGE], {
       windowsHide: true,

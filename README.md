@@ -20,6 +20,17 @@ npm run server           # → http://localhost:3001
 
 개발 모드 (프론트 HMR): 터미널 2개로 `npm run server` + `npm run dev` → http://localhost:5173
 
+## 데스크톱 앱 (Electron)
+
+```bash
+npm run electron        # 개발 실행 (프로젝트의 data/·.env 사용)
+npm run electron:build  # Windows 설치 파일 생성 → release/ClipCheck Setup x.x.x.exe
+```
+
+- 설치된 앱의 데이터·설정은 `%APPDATA%\clip-check\` 에 저장됩니다 (`.env` 에 API 키 입력, `rules\금칙기준.md` 수정 가능).
+- ffmpeg 와 Python whisper 는 데스크톱 앱에서도 시스템에 설치돼 있어야 합니다.
+- 주의: Electron 패키징 후 better-sqlite3 가 Electron ABI 로 재빌드되므로, `npm run server` (Node 단독 실행)를 다시 쓰려면 `npm run rebuild:node` 를 먼저 실행하세요. 반대로 Electron 실행 전에는 `npx electron-builder install-app-deps`.
+
 ## 구조
 
 ```
