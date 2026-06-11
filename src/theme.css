@@ -1,0 +1,118 @@
+/* ============================================================
+   Doom 64 (tweakcn) — dark base, with broadcast-review extensions
+   Achromatic gray surfaces · red primary · green secondary ·
+   blue accent · orange destructive · radius 0 · hard shadows
+   ============================================================ */
+
+:root {
+  /* --- core Doom 64 dark tokens --- */
+  --background: oklch(0.2178 0 0);
+  --foreground: oklch(0.9067 0 0);
+  --card: oklch(0.2850 0 0);
+  --card-foreground: oklch(0.9067 0 0);
+  --popover: oklch(0.2850 0 0);
+  --popover-foreground: oklch(0.9067 0 0);
+
+  --primary: oklch(0.6083 0.2090 27.0276);          /* red */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.6423 0.1467 133.0145);        /* green */
+  --secondary-foreground: oklch(0 0 0);
+  --muted: oklch(0.2645 0 0);
+  --muted-foreground: oklch(0.7058 0 0);
+  --accent: oklch(0.7556 0.1297 230.2237);           /* blue */
+  --accent-foreground: oklch(0 0 0);
+  --destructive: oklch(0.7076 0.1975 46.4558);       /* orange */
+  --destructive-foreground: oklch(0 0 0);
+
+  --border: oklch(0.4091 0 0);
+  --input: oklch(0.4091 0 0);
+  --ring: oklch(0.6083 0.2090 27.0276);
+
+  --chart-1: oklch(0.6083 0.2090 27.0276);
+  --chart-2: oklch(0.6423 0.1467 133.0145);
+  --chart-3: oklch(0.7556 0.1297 230.2237);
+  --chart-4: oklch(0.7076 0.1975 46.4558);
+  --chart-5: oklch(0.7886 0.1510 89.0000);
+
+  --sidebar: oklch(0.1822 0 0);
+  --sidebar-foreground: oklch(0.9067 0 0);
+  --sidebar-border: oklch(0.3400 0 0);
+
+  --radius: 0px;
+
+  --font-sans: "Oxanium", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Source Code Pro", ui-monospace, "SF Mono", monospace;
+
+  /* hard offset shadows (brutalist Doom 64 look) */
+  --shadow-color: 0 0% 0%;
+  --shadow-sm: 1px 1px 0 0 hsl(var(--shadow-color) / 0.55);
+  --shadow:    2px 2px 0 0 hsl(var(--shadow-color) / 0.55);
+  --shadow-md: 3px 3px 0 0 hsl(var(--shadow-color) / 0.6);
+  --shadow-lg: 4px 4px 0 0 hsl(var(--shadow-color) / 0.65);
+  --shadow-xl: 6px 6px 0 0 hsl(var(--shadow-color) / 0.7);
+
+  /* ---- severity scale ---- */
+  --sev-pass:    oklch(0.6423 0.1467 133.0145);  /* 0 통과 — green */
+  --sev-caution: oklch(0.7886 0.1510 89.0000);   /* 1-2 주의 — yellow */
+  --sev-warn:    oklch(0.7076 0.1975 46.4558);   /* 3 경고 — orange */
+  --sev-block:   oklch(0.6083 0.2090 27.0276);   /* 4-5 방영불가 — red */
+  --sev-review:  oklch(0.7886 0.1510 89.0000);   /* 검토필요 — yellow */
+
+  /* ---- timeline segment colors ---- */
+  --seg-normal: oklch(0.6423 0.1467 133.0145);   /* 정상 green */
+  --seg-silent: oklch(0.5500 0 0);               /* 무음 gray */
+  --seg-black:  oklch(0.2600 0 0);               /* 블랙 near-black */
+  --seg-freeze: oklch(0.7556 0.1297 230.2237);   /* 프리즈 blue */
+  --seg-clip:   oklch(0.7076 0.1975 46.4558);    /* 클리핑 orange */
+  --seg-review: oklch(0.7886 0.1510 89.0000);    /* 검토필요 yellow */
+  --seg-block:  oklch(0.6083 0.2090 27.0276);    /* 위반 red */
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbars — keep them on-theme */
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border: 2px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
+
+::selection { background: var(--primary); color: var(--primary-foreground); }
+
+/* responsive collapses for the report's two-column grids */
+@media (max-width: 900px) {
+  .report-pt, .report-review, .report-sub { grid-template-columns: 1fr !important; }
+}
+
+/* utility keyframes */
+@keyframes doom-scan {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 8px; }
+}
+@keyframes doom-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@keyframes doom-indeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+@keyframes doom-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes doom-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.15; }
+}
